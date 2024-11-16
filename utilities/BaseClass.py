@@ -16,5 +16,3 @@ class BaseClass:
         logger.setLevel(logging.DEBUG)  # You will see logs starting from level in this argument
 
         return logger
-
-    # pass

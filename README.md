@@ -5,4 +5,4 @@ I've created several asserts there: check if correct button s are shown, verify 
 
 Here I used POM to separate page objects and actions from the test file; inheritance from the BaseClass class to the test class, inheritance from HomePage class to HomePageActions class; fixtures in contest.py file for setup/tear down and for keeping data; logging.
 
-It's a very useful time saving.
+It's a very useful time saving program.

@@ -91,7 +91,7 @@ class HomePageActions(HomePage):
             self.enter()
             time.sleep(1)
             self.driver.execute_script("window.scrollBy(document.body.scrollHeight, 0);")
-            time.sleep(1)
+            time.sleep(2)
 
             assert self.enter_again_button_element().is_displayed()
             logger.info("Entry - " + str(count) + " - is successful.")
