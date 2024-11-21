@@ -1,6 +1,7 @@
 import math
 import time
 import logging
+import tldextract
 from selenium.webdriver import ActionChains
 from page_objects.HomePage import HomePage
 
@@ -14,6 +15,7 @@ def get_logger():
 
     logger.addHandler(file_handler)  # file handler object
     logger.setLevel(logging.DEBUG)
+
     return logger
 
 
@@ -53,14 +55,14 @@ class HomePageActions(HomePage):
         allowed_entries = len(emails) * 2
 
         while count < allowed_entries:
-            host = self.driver.current_url.split(".")[1].lower()
-            if host == "hgtv":
+            domain = tldextract.extract(self.driver.current_url).domain
+            if domain == "hgtv":
                 frame = frames[0]  # "ngxFrame277066"
                 count += 1
-            else:  # if driver.title.split(".")[1].lower() == "foodnetwork":
+            else:  # domain == "foodnetwork":
                 frame = frames[1]  # "ngxFrame277068"
                 count += 1
-            logger.debug("Host: " + host)
+            logger.debug("Domain: " + domain)
             logger.debug("URL: " + self.driver.current_url)
             logger.debug("Frame: " + frame)
             logger.debug("Count: " + str(count))
@@ -77,7 +79,7 @@ class HomePageActions(HomePage):
             time.sleep(1)
 
             if self.already_entered_element().is_displayed() and self.already_entered():
-                if host == "hgtv":
+                if domain == "hgtv":
                     self.driver.get(sites[1])
                 else:
                     self.driver.get(sites[0])
@@ -106,7 +108,7 @@ class HomePageActions(HomePage):
 
                 handles = self.driver.window_handles
                 child = handles[-1]
-                # self.driver.close()
+                self.driver.close()
                 self.driver.switch_to.window(child)
             else:
                 logger.info(f"All today\'s {count} entries have been performed. See ya tomorrow.")

@@ -1,6 +1,11 @@
 import platform
 import pytest
+import os
 from selenium import webdriver
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 def pytest_addoption(parser):
     parser.addoption(
@@ -38,10 +43,15 @@ def setup(request):
 
 @pytest.fixture(scope="class")
 def data_load():
-    print("User profile data is being created")
+    email1 = os.getenv("email1")
+    email2 = os.getenv("email2")
+    email3 = os.getenv("email3")
+    email4 = os.getenv("email4")
+
     return \
         [
-            ("k@yahoo.com", "v@yahoo.com", "my@outlook.com", "k@gmail.com"),
+            (email1, email2, email3, email4),
             ("ngxFrame277066", "ngxFrame277068"),
-            ("https://www.hgtv.com/sweepstakes/hgtv-urban-oasis/sweepstakes?ocid=xp:sistersite&xp=sistersite", "https://www.foodnetwork.com/sponsored/sweepstakes/hgtv-urban-oasis-sweepstakes?ocid=xp:sistersite&xp=sistersite")
+            ("https://www.hgtv.com/sweepstakes/hgtv-urban-oasis/sweepstakes?ocid=xp:sistersite&xp=sistersite",
+             "https://www.foodnetwork.com/sponsored/sweepstakes/hgtv-urban-oasis-sweepstakes?ocid=xp:sistersite&xp=sistersite")
         ]

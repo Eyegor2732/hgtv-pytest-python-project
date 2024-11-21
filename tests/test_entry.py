@@ -1,5 +1,3 @@
-import pytest
-
 from page_actions.HomePageActions import HomePageActions
 from utilities.BaseClass import BaseClass
 
@@ -13,7 +11,6 @@ class TestEntry(BaseClass):
         users = data_load[0]
         iframes = data_load[1]
         urls = data_load[2]
-
 
         home_page_actions = HomePageActions(self.driver)
         home_page_actions.entry(users, iframes, urls)
