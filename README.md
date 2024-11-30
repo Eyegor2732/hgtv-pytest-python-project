@@ -1,5 +1,5 @@
 # hgtv-pytest-python-project
-It's just practical application to perform entries for HGTV Urban Oasis® sweepstakes on sister sites HGTV and FoodNetwork. Simple logic: just type email you registered with before, tap on entry buttons, scroll up/down, switch between frames.
+It's just practical application to perform entries for HGTV / Foodnetwork / TLC / Discovery sweepstakes on sister sites. Simple logic: just type email you registered with before, tap on entry buttons, scroll up/down, switch between frames.
 
 I've created several asserts there: check if correct button s are shown, verify you did not enter already today.
 

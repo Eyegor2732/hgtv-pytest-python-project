@@ -1,22 +1,10 @@
 import math
 import time
-import logging
+import datetime
 import tldextract
+from selenium.common import NoSuchFrameException, NoSuchElementException
 from selenium.webdriver import ActionChains
 from page_objects.HomePage import HomePage
-
-
-def get_logger():
-    logger = logging.getLogger(__name__)
-
-    file_handler = logging.FileHandler("logfile.log")
-    formatter = logging.Formatter("%(asctime)s :%(levelname)s :%(name)s :%(message)s")
-    file_handler.setFormatter(formatter)
-
-    logger.addHandler(file_handler)  # file handler object
-    logger.setLevel(logging.DEBUG)
-
-    return logger
 
 
 class HomePageActions(HomePage):
@@ -30,87 +18,124 @@ class HomePageActions(HomePage):
     def begin_entry(self):
         self.driver.find_element(*HomePage.begin_entry_button).click()
 
+    def next_small(self):
+        self.driver.find_element(*HomePage.next_button_small).click()
+
     def enter(self):
         self.driver.find_element(*HomePage.enter_button).click()
 
     def enter_again_button_element(self):
         return self.driver.find_element(*HomePage.enter_again_button)
 
+    def enter_again_discovery_button_element(self):
+        return self.driver.find_element(*HomePage.enter_again_discovery_button)
+
     def enter_again(self):
         self.driver.find_element(*HomePage.enter_again_button).click()
+
+    def enter_again_discovery(self):
+        self.driver.find_element(*HomePage.enter_again_discovery_button).click()
 
     def already_entered_element(self):
         return self.driver.find_element(*HomePage.already_entered_message)
 
+    def already_entered_small_element(self):
+        return self.driver.find_element(*HomePage.already_entered_message_small)
+
     def already_entered(self):
         return self.already_entered_element().text.startswith("Sorry!")
 
+    def already_entered_small(self):
+        return self.already_entered_small_element().text.startswith("We're Sorry")
+
     #   ==============================================
 
-    def entry(self, emails, frames, sites):
-        logger = get_logger()
-        action = ActionChains(self.driver)
+    def entry(self, emails, frames, sites, sweep, date_time, home, logger):
+        self.driver.get(home)
 
-        count = 0
-        allowed_entries = len(emails) * 2
+        date_format = '%Y-%m-%d %H:%M:%S'
+        date_obj = datetime.datetime.strptime(date_time, date_format)
 
-        while count < allowed_entries:
-            domain = tldextract.extract(self.driver.current_url).domain
-            if domain == "hgtv":
-                frame = frames[0]  # "ngxFrame277066"
-                count += 1
-            else:  # domain == "foodnetwork":
-                frame = frames[1]  # "ngxFrame277068"
-                count += 1
-            logger.debug("Domain: " + domain)
-            logger.debug("URL: " + self.driver.current_url)
-            logger.debug("Frame: " + frame)
-            logger.debug("Count: " + str(count))
-            user = emails[math.floor((count - 1) / 2)]
-            logger.debug("User: " + user)
+        if datetime.datetime.now() <= date_obj:
+            action = ActionChains(self.driver)
+            count = 0
+            allowed_entries = len(emails) * 2
+            original_domain = tldextract.extract(self.driver.current_url).domain
 
-            time.sleep(1)
-            self.driver.switch_to.frame(frame)
-            time.sleep(1)
-
-            self.enter_email(user)
-            time.sleep(1)
-            self.begin_entry()
-            time.sleep(1)
-
-            if self.already_entered_element().is_displayed() and self.already_entered():
-                if domain == "hgtv":
-                    self.driver.get(sites[1])
+            while count < allowed_entries:
+                domain = tldextract.extract(self.driver.current_url).domain
+                if domain == original_domain:
+                    frame = frames[0]
+                    count += 1
                 else:
-                    self.driver.get(sites[0])
-                logger.info("You already entered for this sweepstake today.")
-                continue
-            time.sleep(1)
+                    frame = frames[1]
+                    count += 1
+                logger.debug(" Domain: " + domain)
+                logger.debug(" URL: " + self.driver.current_url)
+                logger.debug(" Frame: " + frame)
+                logger.debug(" Count: " + str(count))
+                user = emails[math.floor((count - 1) / 2)]
+                logger.debug(" User: " + user)
 
-            self.driver.execute_script("window.scrollBy(0,document.body.scrollHeight);")
-            time.sleep(1)
-
-            self.enter()
-            time.sleep(1)
-            self.driver.execute_script("window.scrollBy(document.body.scrollHeight, 0);")
-            time.sleep(2)
-
-            assert self.enter_again_button_element().is_displayed()
-            logger.info("Entry - " + str(count) + " - is successful.")
-
-            if count < allowed_entries:
-                action.move_to_element(self.enter_again_button_element()).perform()
-                self.enter_again()
+                time.sleep(1)
+                self.driver.switch_to.frame(frame)
                 time.sleep(1)
 
-                self.driver.switch_to.default_content()
+                self.enter_email(user)
+                time.sleep(1)
+                self.begin_entry()
                 time.sleep(1)
 
-                handles = self.driver.window_handles
-                child = handles[-1]
-                self.driver.close()
-                self.driver.switch_to.window(child)
-            else:
-                logger.info(f"All today\'s {count} entries have been performed. See ya tomorrow.")
+                try:
+                    if (self.already_entered_small_element().is_displayed() and self.already_entered_small()) or \
+                            (self.already_entered_element().is_displayed() and self.already_entered()):
+                        if domain == original_domain:
+                            self.driver.get(sites[1])
+                        else:
+                            self.driver.get(sites[0])
+                        logger.info(f" You already entered for {domain} sweepstake today.")
+                        continue
+                    time.sleep(1)
+                except NoSuchElementException:
+                    pass
 
-            time.sleep(2)
+                self.driver.execute_script("window.scrollBy(0,document.body.scrollHeight);")
+                time.sleep(1)
+
+                if domain == original_domain and (sweep == "10k" or sweep == "sweets" or sweep == "central"):
+                    self.next_small()  # 10K, sweets only
+                time.sleep(1)
+                self.enter()
+                time.sleep(1)
+                self.driver.execute_script("window.scrollBy(document.body.scrollHeight, 0);")
+                time.sleep(2)
+
+                if domain == "discovery" and sweep == "central":
+                    assert self.enter_again_discovery_button_element().is_displayed()
+                else:
+                    assert self.enter_again_button_element().is_displayed()
+                logger.info(" Entry - " + str(count) + " - is successful.")
+
+                if count < allowed_entries:
+                    # enter_again_discovery
+                    if domain == "discovery" and sweep == "central":
+                        action.move_to_element(self.enter_again_discovery_button_element()).perform()
+                        self.enter_again_discovery()
+                    else:
+                        action.move_to_element(self.enter_again_button_element()).perform()
+                        self.enter_again()
+                    time.sleep(1)
+
+                    self.driver.switch_to.default_content()
+                    time.sleep(1)
+
+                    handles = self.driver.window_handles
+                    child = handles[-1]
+                    self.driver.close()
+                    self.driver.switch_to.window(child)
+                else:
+                    logger.info(f"All today\'s {count} entries for {sweep} have been performed")
+
+                time.sleep(2)
+        else:
+            logger.info(f" Sweepstake {sweep} is expired")
