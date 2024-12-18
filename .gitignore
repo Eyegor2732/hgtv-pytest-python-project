@@ -2,5 +2,11 @@
 .DS_Store
 __pycache__
 /.idea
-thoughts
 .env
+*.html
+*.txt
+.report.json
+thoughts
+allure_reports
+html_reports
+/tests/__pycache__

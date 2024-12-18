@@ -7,6 +7,14 @@ from selenium.webdriver import ActionChains
 from page_objects.HomePage import HomePage
 
 
+def is_sweep_small(sweep):
+    return sweep == "10k" or sweep == "sweets" or sweep == "central"
+
+
+def is_sweep_large(sweep):
+    return sweep == "oasis" or sweep == "dream"
+
+
 class HomePageActions(HomePage):
 
     def __init__(self, driver):
@@ -87,11 +95,16 @@ class HomePageActions(HomePage):
                 time.sleep(1)
 
                 try:
-                    if (self.already_entered_small_element().is_displayed() and self.already_entered_small()) or \
-                            (self.already_entered_element().is_displayed() and self.already_entered()):
+                    time.sleep(1)
+                    if (is_sweep_small(sweep) and self.already_entered_small_element().is_displayed() and self.already_entered_small()) or \
+                            (is_sweep_large(sweep) and self.already_entered_element().is_displayed() and self.already_entered()):
+                        print("try domain: " + domain)
+                        print("try original_domain: " + original_domain)
                         if domain == original_domain:
+                            print("sites[1]: " + sites[1])
                             self.driver.get(sites[1])
                         else:
+                            print("sites[1]: " + sites[1])
                             self.driver.get(sites[0])
                         logger.info(f" You already entered for {domain} sweepstake today.")
                         continue
@@ -102,8 +115,8 @@ class HomePageActions(HomePage):
                 self.driver.execute_script("window.scrollBy(0,document.body.scrollHeight);")
                 time.sleep(1)
 
-                if domain == original_domain and (sweep == "10k" or sweep == "sweets" or sweep == "central"):
-                    self.next_small()  # 10K, sweets only
+                if domain == original_domain and is_sweep_small(sweep):
+                    self.next_small()  # 10K, sweets.central
                 time.sleep(1)
                 self.enter()
                 time.sleep(1)

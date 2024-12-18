@@ -122,3 +122,17 @@ def data_load_10k():
             "2025-01-08 08:59:00",
             "https://www.hgtv.com/shows/10k-to-holiday?nl=PC-TLC%3ASweeps_112324_box1-HGSweeps&lid=jaxq67lj8w6l"
         ]
+
+# ========== DreamHome  ===  until 02/14/2025, at 5:00 p.m. ET  ===  hgtv === foodnetwork
+
+@pytest.fixture(scope="function")
+def data_load_dream():
+    return \
+        [
+            ("ngxFrame281392", "ngxFrame281394"),
+            ("https://www.hgtv.com/sweepstakes/hgtv-dream-home/sweepstakes",
+             "https://www.foodnetwork.com/sponsored/sweepstakes/hgtv-dream-home-sweepstakes"),
+            "dream",
+            "2025-02-14 17:00:00",
+            "https://www.hgtv.com/sweepstakes/hgtv-dream-home/sweepstakes"
+        ]
