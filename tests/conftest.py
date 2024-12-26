@@ -8,7 +8,8 @@ load_dotenv()
 
 
 def pytest_addoption(parser):
-    parser.addoption( "--browser_name", action="store", default="chrome")
+    parser.addoption("--browser_name", action="store", default="chrome")
+
 
 #  ========== Class Setup / Teardown fixture  ===
 
@@ -52,6 +53,7 @@ def setup(request):
     yield
     driver.quit()
 
+
 #  ========== Class Dataload fixture  ===
 
 @pytest.fixture(scope="class")
@@ -65,6 +67,7 @@ def data_load():
         [
             (email1, email2, email3, email4)
         ]
+
 
 #  ========== Urban Oasis  ===  until 11/21/2024, at 8:59 a.m. ET === hgtv  ===  foodnetwork
 
@@ -80,6 +83,7 @@ def data_load_oasis():
             "https://www.hgtv.com/sweepstakes/hgtv-urban-oasis/sweepstakes?ocid=xp:sistersite&xp=sistersite"
         ]
 
+
 #  ========== Holiday Sweets $5k  ===  until 01/07/2025, at 8:59 a.m. ET  ===  foodnetwork === tlc
 
 @pytest.fixture(scope="function")
@@ -88,12 +92,13 @@ def data_load_sweets():
         [
             ("ngxFrame279528", "ngxFrame279530"),
             (
-            "https://www.foodnetwork.com/sponsored/sweepstakes/holiday-sweets-and-treats?ocid=xp:sistersite&xp=sistersite",
-            "https://www.tlc.com/sweepstakes/holiday-sweets-and-treats?ocid=xp:sistersite&xp=sistersite"),
+                "https://www.foodnetwork.com/sponsored/sweepstakes/holiday-sweets-and-treats?ocid=xp:sistersite&xp=sistersite",
+                "https://www.tlc.com/sweepstakes/holiday-sweets-and-treats?ocid=xp:sistersite&xp=sistersite"),
             "sweets",
             "2025-01-07 08:59:00",
             "https://www.foodnetwork.com/sponsored/sweepstakes/holiday-sweets-and-treats?nl=PC-TLC%3ASweeps_112324_box2-FNSweeps&lid=vmefnq3y10e8"
         ]
+
 
 # ========== Holiday Central $5K  ===  until 01/09/2025, at 8:59 a.m. ET  ===  tlc === discovery
 
@@ -109,6 +114,7 @@ def data_load_central():
             "https://www.tlc.com/sweepstakes/holiday-central-5k-giveaway?nl=PC-TLC%3ASweeps_112324_postcard&lid=53bo7n57t64x"
         ]
 
+
 # ========== $10KHoliday  ===  until 01/08/2025, at 8:59 a.m. ET  ===  hgtv === foodnetwork
 
 @pytest.fixture(scope="function")
@@ -122,6 +128,7 @@ def data_load_10k():
             "2025-01-08 08:59:00",
             "https://www.hgtv.com/shows/10k-to-holiday?nl=PC-TLC%3ASweeps_112324_box1-HGSweeps&lid=jaxq67lj8w6l"
         ]
+
 
 # ========== DreamHome  ===  until 02/14/2025, at 5:00 p.m. ET  ===  hgtv === foodnetwork
 

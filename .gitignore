@@ -7,6 +7,9 @@ __pycache__
 *.txt
 .report.json
 thoughts
-allure_reports
-html_reports
+allure-report
+allure-results
+html-results
 /tests/__pycache__
+tests/__pycache__
+*/__pycache__
