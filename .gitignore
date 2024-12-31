@@ -13,3 +13,4 @@ html-results
 /tests/__pycache__
 tests/__pycache__
 */__pycache__
+entries.json

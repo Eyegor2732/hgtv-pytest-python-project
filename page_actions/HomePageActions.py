@@ -1,3 +1,4 @@
+import gc
 import math
 import time
 import datetime
@@ -78,12 +79,13 @@ class HomePageActions(HomePage):
                 else:
                     frame = frames[1]
                     count += 1
-                logger.debug(" Domain: " + domain)
-                logger.debug(" URL: " + self.driver.current_url)
-                logger.debug(" Frame: " + frame)
-                logger.debug(" Count: " + str(count))
+
+                # logger.debug(f" {sweep} - Domain: {domain}")
+                # logger.debug(f" {sweep} - URL: {self.driver.current_url}")
+                # logger.debug(f" {sweep} - Frame: {frame}")
+                # logger.debug(f" {sweep} - Count: {str(count)}")
                 user = emails[math.floor((count - 1) / 2)]
-                logger.debug(" User: " + user)
+                # logger.debug(f" {sweep} - User: {user}")
 
                 time.sleep(1)
                 self.driver.switch_to.frame(frame)
@@ -98,15 +100,11 @@ class HomePageActions(HomePage):
                     time.sleep(1)
                     if (is_sweep_small(sweep) and self.already_entered_small_element().is_displayed() and self.already_entered_small()) or \
                             (is_sweep_large(sweep) and self.already_entered_element().is_displayed() and self.already_entered()):
-                        print("try domain: " + domain)
-                        print("try original_domain: " + original_domain)
                         if domain == original_domain:
-                            print("sites[1]: " + sites[1])
                             self.driver.get(sites[1])
                         else:
-                            print("sites[1]: " + sites[1])
                             self.driver.get(sites[0])
-                        logger.info(f" You already entered for {domain} sweepstake today.")
+                        logger.info(f" {sweep} - {user} - You already entered for {domain} sweepstake today.")
                         continue
                     time.sleep(1)
                 except NoSuchElementException:
@@ -116,7 +114,7 @@ class HomePageActions(HomePage):
                 time.sleep(1)
 
                 if domain == original_domain and is_sweep_small(sweep):
-                    self.next_small()  # 10K, sweets.central
+                    self.next_small()  # 10K, sweets, central
                 time.sleep(1)
                 self.enter()
                 time.sleep(1)
@@ -127,7 +125,7 @@ class HomePageActions(HomePage):
                     assert self.enter_again_discovery_button_element().is_displayed()
                 else:
                     assert self.enter_again_button_element().is_displayed()
-                logger.info(" Entry - " + str(count) + " - is successful.")
+                logger.info(f" {sweep} - {user} - Entry - {count} - is successful.")
 
                 if count < allowed_entries:
                     # enter_again_discovery
@@ -147,7 +145,7 @@ class HomePageActions(HomePage):
                     self.driver.close()
                     self.driver.switch_to.window(child)
                 else:
-                    logger.info(f"All today\'s {count} entries for {sweep} have been performed")
+                    logger.info(f" All today\'s {count} entries for {sweep} have been performed")
 
                 time.sleep(2)
         else:
