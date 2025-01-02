@@ -1,22 +1,21 @@
-import gc
-
 import pytest
 from page_actions.HomePageActions import HomePageActions
-from utilities.BaseClass import BaseClass
+from utilities.BaseClass import BaseClass, get_logger
+
+logger = get_logger()
 
 
 class TestEntry(BaseClass):
 
     @pytest.mark.usefixtures("data_load_all")
-    def test_entry(self, data_load, data_load_all):
-        users = data_load[0]
-        iframes = data_load_all[0]
-        urls = data_load_all[1]
-        sweep = data_load_all[2]
-        end_date = data_load_all[3]
-        home = data_load_all[4]
+    def test_entry(self, data_load_all):
+        users = data_load_all[0]
+        iframes = data_load_all[1]
+        urls = data_load_all[2]
+        sweep = data_load_all[3]
+        end_date = data_load_all[4]
+        home = data_load_all[5]
 
-        logger = self.get_logger()
         logger.info(f" Test {sweep} Started")
 
         home_page_actions = HomePageActions(self.driver)

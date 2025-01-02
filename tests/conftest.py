@@ -1,7 +1,7 @@
 import platform
 import pytest
 from selenium import webdriver
-from utilities.EntriesClass import get_email, get_oasis, get_sweets, get_10k, get_central, get_dream
+from utilities.EntriesClass import get_oasis, get_sweets, get_10k, get_central, get_dream
 
 
 def pytest_addoption(parser):
@@ -49,13 +49,6 @@ def setup(request):
     request.cls.driver = driver
     yield
     driver.quit()
-
-
-#  ========== Class Dataload fixture  ===
-
-@pytest.fixture(scope="class")
-def data_load():
-    return get_email()
 
 
 #  ========== All entries  ===

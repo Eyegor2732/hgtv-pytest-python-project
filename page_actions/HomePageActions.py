@@ -1,9 +1,8 @@
-import gc
 import math
 import time
 import datetime
 import tldextract
-from selenium.common import NoSuchFrameException, NoSuchElementException
+from selenium.common import NoSuchElementException
 from selenium.webdriver import ActionChains
 from page_objects.HomePage import HomePage
 
