@@ -8,12 +8,16 @@ from page_objects.HomePage import HomePage
 
 
 def is_sweep_small(sweep):
-    return sweep == "10k" or sweep == "sweets" or sweep == "central"
-
+    small = ["10k", "sweets", "central", "fresh", "healthy", "yes", "curb", "groc", "spring", "outside"]
+    return sweep in small
 
 def is_sweep_large(sweep):
-    return sweep == "oasis" or sweep == "dream"
+    large = ["oasis", "dream", "smart"]
+    return sweep in large
 
+def is_sweep_single(sweep):
+    single = ["champ", "valspar"]
+    return sweep in single
 
 class HomePageActions(HomePage):
 
@@ -31,6 +35,9 @@ class HomePageActions(HomePage):
 
     def enter(self):
         self.driver.find_element(*HomePage.enter_button).click()
+
+    def enter_button_element(self):
+        return self.driver.find_element(*HomePage.enter_button)
 
     def enter_again_button_element(self):
         return self.driver.find_element(*HomePage.enter_again_button)
@@ -58,7 +65,7 @@ class HomePageActions(HomePage):
 
     #   ==============================================
 
-    def entry(self, emails, frames, sites, sweep, date_time, home, logger):
+    def entry_double(self, emails, frames, sites, sweep, date_time, home, logger):
         self.driver.get(home)
 
         date_format = '%Y-%m-%d %H:%M:%S'
@@ -79,12 +86,7 @@ class HomePageActions(HomePage):
                     frame = frames[1]
                     count += 1
 
-                # logger.debug(f" {sweep} - Domain: {domain}")
-                # logger.debug(f" {sweep} - URL: {self.driver.current_url}")
-                # logger.debug(f" {sweep} - Frame: {frame}")
-                # logger.debug(f" {sweep} - Count: {str(count)}")
                 user = emails[math.floor((count - 1) / 2)]
-                # logger.debug(f" {sweep} - User: {user}")
 
                 time.sleep(1)
                 self.driver.switch_to.frame(frame)
@@ -109,11 +111,11 @@ class HomePageActions(HomePage):
                 except NoSuchElementException:
                     pass
 
-                self.driver.execute_script("window.scrollBy(0,document.body.scrollHeight);")
-                time.sleep(1)
+                #self.driver.execute_script("window.scrollBy(0,document.body.scrollHeight);")
+                #time.sleep(1)
 
-                if domain == original_domain and is_sweep_small(sweep):
-                    self.next_small()  # 10K, sweets, central
+                if domain == original_domain and is_sweep_small(sweep): # and not ?
+                    self.next_small()
                 time.sleep(1)
                 self.enter()
                 time.sleep(1)
@@ -124,10 +126,10 @@ class HomePageActions(HomePage):
                     assert self.enter_again_discovery_button_element().is_displayed()
                 else:
                     assert self.enter_again_button_element().is_displayed()
-                logger.info(f" {sweep} - {user} - Entry - {count} - is successful.")
+
+                logger.info(f" {sweep} - {user} - {domain} - Entry - {count} - is successful.")
 
                 if count < allowed_entries:
-                    # enter_again_discovery
                     if domain == "discovery" and sweep == "central":
                         action.move_to_element(self.enter_again_discovery_button_element()).perform()
                         self.enter_again_discovery()
@@ -143,6 +145,63 @@ class HomePageActions(HomePage):
                     child = handles[-1]
                     self.driver.close()
                     self.driver.switch_to.window(child)
+                else:
+                    logger.info(f" All today\'s {count} entries for {sweep} have been performed")
+
+                time.sleep(2)
+        else:
+            logger.info(f" Sweepstake {sweep} is expired")
+
+
+    def entry_single(self, emails, frames, sites, sweep, date_time, home, logger):
+        self.driver.get(home)
+
+        date_format = '%Y-%m-%d %H:%M:%S'
+        date_obj = datetime.datetime.strptime(date_time, date_format)
+
+        if datetime.datetime.now() <= date_obj:
+            action = ActionChains(self.driver)
+            count = 0
+            allowed_entries = len(emails)
+            #original_domain = tldextract.extract(self.driver.current_url).domain
+
+            while count < allowed_entries:
+                domain = tldextract.extract(self.driver.current_url).domain
+                count += 1
+                frame = frames[0]
+                user = emails[count - 1]
+
+                time.sleep(1)
+                self.driver.switch_to.frame(frame)
+                time.sleep(1)
+
+                self.enter_email(user)
+                time.sleep(1)
+                self.begin_entry()
+                time.sleep(1)
+
+                try:
+                    time.sleep(1)
+                    if is_sweep_single(sweep) and self.already_entered_small_element().is_displayed() and self.already_entered_small():
+                        self.driver.get(sites[0])
+                        logger.info(f" {sweep} - {user} - You already entered for {domain} sweepstake today.")
+                        continue
+                    time.sleep(1)
+                except NoSuchElementException:
+                    pass
+
+                self.driver.execute_script("window.scrollBy(0,document.body.scrollHeight);")
+                time.sleep(1)
+                self.enter()
+                time.sleep(1)
+                self.driver.execute_script("window.scrollBy(document.body.scrollHeight, 0);")
+                time.sleep(2)
+
+                logger.info(f" {sweep} - {user} - {domain} - Entry - {count} - is successful.")
+
+                if count < allowed_entries:
+                    self.driver.get(home)
+                    time.sleep(1)
                 else:
                     logger.info(f" All today\'s {count} entries for {sweep} have been performed")
 

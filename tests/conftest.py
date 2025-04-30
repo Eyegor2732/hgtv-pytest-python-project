@@ -1,11 +1,11 @@
 import platform
 import pytest
 from selenium import webdriver
-from utilities.EntriesClass import get_oasis, get_sweets, get_10k, get_central, get_dream
+from utilities.EntriesClass import *
 
 
 def pytest_addoption(parser):
-    parser.addoption("--browser_name", action="store", default="chrome")
+    parser.addoption("--browser_name", action="store", default="edge")
 
 
 #  ========== Class Setup / Teardown fixture  ===
@@ -51,17 +51,32 @@ def setup(request):
     driver.quit()
 
 
-#  ========== All entries  ===
+#  ========== All sweepstakes  ===
 
 oasis = get_oasis()
 sweets = get_sweets()
 k10 = get_10k()
 central = get_central()
 dream = get_dream()
-
+fresh = get_fresh()
+healthy = get_healthy()
+yes = get_yes()
+curb = get_curb()
+groc = get_groc()
+smart = get_smart()
+champ = get_champ()
+valspar = get_valspar()
+spring = get_spring()
+outside = get_outside()
 
 # ========== All Load fixture  ===
 
-@pytest.fixture(scope="function", params=[dream, central, k10, sweets, oasis])
-def data_load_all(request):
+# @pytest.fixture(scope="function", params=[k5groc, curb, yes, healthy, fresh, dream, central, k10, sweets, oasis])
+@pytest.fixture(scope="function", params=[outside, smart, spring, groc]) #
+def data_load_double(request):
+    return request.param
+
+
+@pytest.fixture(scope="function", params=[valspar])
+def data_load_single(request):
     return request.param
