@@ -5,7 +5,7 @@ from utilities.EntriesClass import *
 
 
 def pytest_addoption(parser):
-    parser.addoption("--browser_name", action="store", default="edge")
+    parser.addoption("--browser_name", action="store", default="firefox")
 
 
 #  ========== Class Setup / Teardown fixture  ===
@@ -54,29 +54,22 @@ def setup(request):
 #  ========== All sweepstakes  ===
 
 oasis = get_oasis()
-sweets = get_sweets()
-k10 = get_10k()
 central = get_central()
 dream = get_dream()
-fresh = get_fresh()
-healthy = get_healthy()
-yes = get_yes()
-curb = get_curb()
-groc = get_groc()
 smart = get_smart()
-champ = get_champ()
-valspar = get_valspar()
-spring = get_spring()
-outside = get_outside()
+baking = get_baking()
+newyear = get_newyear()
+bite = get_bite()
+big = get_big()
+
 
 # ========== All Load fixture  ===
-
-# @pytest.fixture(scope="function", params=[k5groc, curb, yes, healthy, fresh, dream, central, k10, sweets, oasis])
-@pytest.fixture(scope="function", params=[outside, smart, spring, groc]) #
+#
+@pytest.fixture(scope="function", params=[dream, newyear, bite, big])  # dream, newyear, bite, big
 def data_load_double(request):
     return request.param
 
 
-@pytest.fixture(scope="function", params=[valspar])
-def data_load_single(request):
-    return request.param
+# @pytest.fixture(scope="function", params=[])
+# def data_load_single(request):
+#     return request.param
