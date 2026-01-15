@@ -6,6 +6,7 @@ from page_objects.HomePage import HomePage
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.common.exceptions import TimeoutException
+from utilities.SharedClass import random_sleep
 
 
 def is_sweep_small(sweep):
@@ -138,7 +139,6 @@ class HomePageActions(HomePage):
 
         date_format = '%Y-%m-%d %H:%M:%S'
         date_obj = datetime.datetime.strptime(date_time, date_format)
-
         if datetime.datetime.now() <= date_obj:
             action = ActionChains(self.driver)
             count = 0
@@ -162,6 +162,11 @@ class HomePageActions(HomePage):
                 )
 
                 self.enter_email(user)
+
+                random_sleep(1, 3) # to simulate human response
+
+
+
                 self.begin_entry()
 
                 try:
@@ -185,7 +190,7 @@ class HomePageActions(HomePage):
                         self.driver.get(next_site)
 
                         logger.info(
-                            f" {sweep} - {user} - You already entered for {domain} sweepstake today."
+                            f" {sweep.upper()} - {user} - You already entered for {domain} sweepstake today."
                         )
                         continue
 
@@ -194,6 +199,8 @@ class HomePageActions(HomePage):
                     pass
 
                 self.driver.execute_script("window.scrollBy(0,document.body.scrollHeight);")
+
+                random_sleep(1, 3) # to simulate human response
 
                 if domain == original_domain and is_sweep_small(sweep):  # and not ?
                     self.next_small()
@@ -205,7 +212,9 @@ class HomePageActions(HomePage):
 
                 self.driver.switch_to.default_content()
 
-                logger.info(f" {sweep} - {user} - {domain} - Entry - {count} - is successful.")
+                logger.info(f" {sweep.upper()} - {user} - {domain} - Entry - {count} - is successful.")
+
+                random_sleep(1, 3) # to simulate human response
 
                 if count < allowed_entries:
                     if domain == "discovery" and sweep == "central":

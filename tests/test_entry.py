@@ -1,6 +1,5 @@
 import pytest
 from page_actions.HomePageActions import HomePageActions
-# from tests.conftest import data_load_single
 from utilities.BaseClass import BaseClass, get_logger
 
 
@@ -17,12 +16,12 @@ class TestEntry(BaseClass):
         end_date = data_load_double[4]
         home = data_load_double[5]
 
-        self.logger.info(f" Test {sweep} Started")
+        self.logger.info(f" Test {sweep.upper()} Started")
 
         home_page_actions = HomePageActions(self.driver)
         home_page_actions.entry_double(users, iframes, urls, sweep, end_date, home, self.logger)
 
-        self.logger.info(f" Test {sweep} Ended")
+        self.logger.info(f" Test {sweep.upper()} Ended")
 
     # @pytest.mark.usefixtures("data_load_single")
     # def test_entry_single(self, data_load_single):

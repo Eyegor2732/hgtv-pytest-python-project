@@ -115,7 +115,7 @@ def get_bite():
             "https://www.foodnetwork.com/sponsored/sweepstakes/bite-into-2026?xp=sistersite_hgtv_sweeps_page"
         ]
 
-# ========== Dream Big  ===  until 03/10/2026, at 8:59 a.m. ET === tlc  ===  hgtv
+# ========== Dream Big  ===  until 03/26/2026, at 8:59 a.m. ET === tlc  ===  hgtv
 
 def get_big():
     return \
