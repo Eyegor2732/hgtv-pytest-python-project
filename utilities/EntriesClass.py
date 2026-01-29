@@ -73,18 +73,46 @@ def get_smart():
         ]
 
 
-# ========== Halloween Baking Giveaway  ===  until 27/27/2025, at 10:00 p.m. ET  ===  foodnetwork === SINGLE
+# ========== Sherwin-Williams Get It True  ===  until 02/13/2026, at 5:00 p.m. ET  ===  hgtv === SINGLE
 
-def get_baking():
+def get_true():
     return \
         [
             get_users(),
-            ("ngxFrame290730", "ngxFrame290730"),
-            ("https://www.foodnetwork.com/shows/halloween-baking-championship/giveaway",
-             "https://www.foodnetwork.com/shows/halloween-baking-championship/giveaway"),
-            "baking",
-            "2025-10-27 22:00:00",
-            "https://www.foodnetwork.com/shows/halloween-baking-championship/giveaway"
+            ("ngxFrame294321", "ngxFrame294321"),
+            ("https://www.hgtv.com/sponsored/sweeps/hgtv-home-by-sherwin-williams-dream-it-true-sweepstakes",
+             "https://www.hgtv.com/sponsored/sweeps/hgtv-home-by-sherwin-williams-dream-it-true-sweepstakes"),
+            "true",
+            "2026-02-13 17:00:00",
+            "https://www.hgtv.com/sponsored/sweeps/hgtv-home-by-sherwin-williams-dream-it-true-sweepstakes"
+        ]
+
+# ========== Wayfair Cook Up Your Dream Kitchen  ===  until 02/13/2026, at 5:00 p.m. ET  ===  foodnetwork === SINGLE
+
+def get_kitchen():
+    return \
+        [
+            get_users(),
+            ("ngxFrame294325", "ngxFrame294325"),
+            ("https://www.foodnetwork.com/sponsored/sweepstakes/wayfair-cook-up-your-dream-kitchen-sweepstakes?xp=sistersite_hgtv_sweeps_page",
+             "https://www.foodnetwork.com/sponsored/sweepstakes/wayfair-cook-up-your-dream-kitchen-sweepstakes?xp=sistersite_hgtv_sweeps_page"),
+            "kitchen",
+            "2026-02-13 17:00:00",
+            "https://www.foodnetwork.com/sponsored/sweepstakes/wayfair-cook-up-your-dream-kitchen-sweepstakes?xp=sistersite_hgtv_sweeps_page"
+        ]
+
+# ========== IKEA Decades of Possibilities  ===  until 02/22/2026, at 5:00 p.m. ET  ===  hgtv === SINGLE
+
+def get_decades():
+    return \
+        [
+            get_users(),
+            ("ngxFrame294993", "ngxFrame294993"),
+            ("https://www.hgtv.com/sponsored/sweeps/decades-of-possibilities",
+             "https://www.hgtv.com/sponsored/sweeps/decades-of-possibilities"),
+            "decades",
+            "2026-02-22 17:00:00",
+            "https://www.hgtv.com/sponsored/sweeps/decades-of-possibilities"
         ]
 
 # ========== New Year, New Look  ===  until 02/13/2026, at 8:59 a.m. ET  ===  hgtv === foodnetwork

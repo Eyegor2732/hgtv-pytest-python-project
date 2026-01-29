@@ -3,6 +3,7 @@
 __pycache__
 /.idea
 .env
+!.env.example
 *.html
 *.txt
 .report.json
@@ -10,8 +11,8 @@ thoughts
 allure-report
 allure-results
 html-results
-/tests/__pycache__
-tests/__pycache__
+/tests/__pycache__/
+tests/__pycache__/
 */__pycache__
-entries.json
 *.pyc
+entries.json

@@ -6,6 +6,7 @@ from page_objects.HomePage import HomePage
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.common.exceptions import TimeoutException
+from selenium.common import NoSuchElementException
 from utilities.SharedClass import random_sleep
 
 
@@ -20,7 +21,7 @@ def is_sweep_large(sweep):
 
 
 def is_sweep_single(sweep):
-    single = []
+    single = ["true", "kitchen", "decades"]
     return sweep in single
 
 
@@ -165,8 +166,6 @@ class HomePageActions(HomePage):
 
                 random_sleep(1, 3) # to simulate human response
 
-
-
                 self.begin_entry()
 
                 try:
@@ -234,58 +233,53 @@ class HomePageActions(HomePage):
         else:
             logger.info(f" Sweepstake {sweep.upper()} is expired")
 
-    # def entry_single(self, emails, frames, sites, sweep, date_time, home, logger):
-    #     self.driver.get(home)
-    #
-    #     date_format = '%Y-%m-%d %H:%M:%S'
-    #     date_obj = datetime.datetime.strptime(date_time, date_format)
-    #
-    #     if datetime.datetime.now() <= date_obj:
-    #         # action = ActionChains(self.driver)
-    #         count = 0
-    #         allowed_entries = len(emails)
-    #         #original_domain = tldextract.extract(self.driver.current_url).domain
-    #
-    #         while count < allowed_entries:
-    #             domain = tldextract.extract(self.driver.current_url).domain
-    #             count += 1
-    #             frame = frames[0]
-    #             user = emails[count - 1]
-    #
-    #             time.sleep(1)
-    #             self.driver.switch_to.frame(frame)
-    #             time.sleep(1)
-    #
-    #             self.enter_email(user)
-    #             time.sleep(1)
-    #             self.begin_entry()
-    #             time.sleep(1)
-    #
-    #             try:
-    #                 time.sleep(1)
-    #                 if is_sweep_single(sweep) and self.already_entered_small_element().is_displayed() and self.already_entered_small():
-    #                     self.driver.get(sites[0])
-    #                     logger.info(f" {sweep} - {user} - You already entered for {domain} sweepstake today.")
-    #                     continue
-    #                 time.sleep(1)
-    #             except NoSuchElementException:
-    #                 pass
-    #
-    #             self.driver.execute_script("window.scrollBy(0,document.body.scrollHeight);")
-    #             time.sleep(1)
-    #             self.enter()
-    #             time.sleep(2)
-    #             self.driver.execute_script("window.scrollBy(document.body.scrollHeight, 0);")
-    #             time.sleep(2)
-    #
-    #             logger.info(f" {sweep} - {user} - {domain} - Entry - {count} - is successful.")
-    #
-    #             if count < allowed_entries:
-    #                 self.driver.get(home)
-    #                 time.sleep(1)
-    #             else:
-    #                 logger.info(f" All today\'s {count} entries for {sweep} have been performed")
-    #
-    #             time.sleep(2)
-    #     else:
-    #         logger.info(f" Sweepstake {sweep} is expired")
+    def entry_single(self, emails, frames, sites, sweep, date_time, home, logger):
+        self.driver.get(home)
+
+        date_format = '%Y-%m-%d %H:%M:%S'
+        date_obj = datetime.datetime.strptime(date_time, date_format)
+
+        if datetime.datetime.now() <= date_obj:
+            count = 0
+            allowed_entries = len(emails)
+
+            while count < allowed_entries:
+                self.agree()
+                domain = tldextract.extract(self.driver.current_url).domain
+                count += 1
+                frame = frames[0]
+                user = emails[count - 1]
+
+                WebDriverWait(self.driver, 10).until(
+                    ec.frame_to_be_available_and_switch_to_it(frame)
+                )
+
+                self.enter_email(user)
+
+                random_sleep(1, 3)  # to simulate human response
+
+                self.begin_entry()
+
+                try:
+                    if is_sweep_single(sweep) and self.already_entered_small_element().is_displayed() and self.already_entered_small():
+                        self.driver.get(sites[0])
+                        logger.info(f" {sweep.upper()} - {user} - You already entered for {domain} sweepstake today.")
+                        continue
+                except NoSuchElementException:
+                    # "already entered" message did not appear → proceed normally
+                    pass
+
+                self.driver.execute_script("window.scrollBy(0,document.body.scrollHeight);")
+
+                random_sleep(1, 3)  # to simulate human response
+
+                self.enter()
+
+                logger.info(f" {sweep.upper()} - {user} - {domain} - Entry - {count} - is successful.")
+
+                if count < allowed_entries:
+                    self.driver.get(home)
+                else:
+                    logger.info(f" All today\'s {count} entries for {sweep.upper()} have been performed")
+        else:
+            logger.info(f" Sweepstake {sweep.upper()} is expired")
