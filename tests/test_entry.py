@@ -16,7 +16,7 @@ class TestEntry(BaseClass):
         end_date = data_load_double[4]
         home = data_load_double[5]
 
-        self.logger.info(f" Test {sweep.upper()} Started")
+        self.logger.info(f" Test {sweep.upper()} Started. Must be before {end_date}")
 
         home_page_actions = HomePageActions(self.driver)
         home_page_actions.entry_double(users, iframes, urls, sweep, end_date, home, self.logger)
@@ -32,7 +32,7 @@ class TestEntry(BaseClass):
         end_date = data_load_single[4]
         home = data_load_single[5]
 
-        self.logger.info(f" Test {sweep.upper()} Started")
+        self.logger.info(f" Test {sweep.upper()} Started. Must be before {end_date}")
 
         home_page_actions = HomePageActions(self.driver)
         home_page_actions.entry_single(users, iframes, urls, sweep, end_date, home, self.logger)

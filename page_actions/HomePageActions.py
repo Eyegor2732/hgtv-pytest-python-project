@@ -11,7 +11,7 @@ from utilities.SharedClass import random_sleep
 
 
 def is_sweep_small(sweep):
-    small = ["newyear", "bite", "big"]
+    small = ["cartload", "grow", "backyard"]
     return sweep in small
 
 
@@ -21,7 +21,7 @@ def is_sweep_large(sweep):
 
 
 def is_sweep_single(sweep):
-    single = ["true", "kitchen", "decades"]
+    single = ["valspar"]
     return sweep in single
 
 
@@ -231,7 +231,7 @@ class HomePageActions(HomePage):
                     logger.info(f" All today\'s {count} entries for {sweep.upper()} have been performed")
 
         else:
-            logger.info(f" Sweepstake {sweep.upper()} is expired")
+            logger.info(f" Sweepstake {sweep.upper()} is expired on {date_time}")
 
     def entry_single(self, emails, frames, sites, sweep, date_time, home, logger):
         self.driver.get(home)
@@ -282,4 +282,4 @@ class HomePageActions(HomePage):
                 else:
                     logger.info(f" All today\'s {count} entries for {sweep.upper()} have been performed")
         else:
-            logger.info(f" Sweepstake {sweep.upper()} is expired")
+            logger.info(f" Sweepstake {sweep.upper()} is expired on {date_time}")

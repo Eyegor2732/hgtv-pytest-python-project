@@ -53,21 +53,18 @@ oasis = get_oasis()
 central = get_central()
 dream = get_dream()
 smart = get_smart()
-true = get_true()
-kitchen = get_kitchen()
-decades = get_decades()
-newyear = get_newyear()
-bite = get_bite()
-big = get_big()
-
+cartload = get_cartload()
+grow = get_grow()
+backyard = get_backyard()
+valspar = get_valspar()
 
 # ========== All Load fixture  ===
-#
-@pytest.fixture(scope="function", params=[dream, newyear, bite, big])
+
+@pytest.fixture(scope="function", params=[cartload, grow, backyard, smart])
 def data_load_double(request):
     return request.param
 
 
-@pytest.fixture(scope="function", params=[true, kitchen, decades])
+@pytest.fixture(scope="function", params=[valspar])
 def data_load_single(request):
     return request.param

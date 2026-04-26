@@ -6,7 +6,7 @@ __pycache__
 !.env.example
 *.html
 *.txt
-.report.json
+thoughts/.report.json
 thoughts
 allure-report
 allure-results

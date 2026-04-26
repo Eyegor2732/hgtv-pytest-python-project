@@ -12,7 +12,6 @@ def get_users():
 
     return email1, email2, email3, email4
 
-
 # ========== Urban Oasis  ===  until 11/21/2024, at 8:59 a.m. ET === hgtv  ===  foodnetwork
 
 def get_oasis():
@@ -26,7 +25,6 @@ def get_oasis():
             "2024-11-21 08:59:00",
             "https://www.hgtv.com/sweepstakes/hgtv-urban-oasis/sweepstakes?ocid=xp:sistersite&xp=sistersite"
         ]
-
 
 # ========== Holiday Central $5K  ===  until 01/09/2025, at 8:59 a.m. ET  ===  tlc === discovery
 
@@ -42,8 +40,7 @@ def get_central():
             "https://www.tlc.com/sweepstakes/holiday-central-5k-giveaway?nl=PC-TLC%3ASweeps_112324_postcard&lid=53bo7n57t64x"
         ]
 
-
-# ========== DreamHome  ===  until 02/14/2025, at 5:00 p.m. ET  ===  hgtv === foodnetwork
+# ========== DreamHome  ===  until 02/13/2026, at 5:00 p.m. ET  ===  hgtv === foodnetwork
 
 def get_dream():
     return \
@@ -57,104 +54,74 @@ def get_dream():
             "https://www.hgtv.com/sweepstakes/hgtv-dream-home/sweepstakes"
         ]
 
-
-# ========== Smart Home  ===  until 05/23/2025, at 17:00 p.m. ET  ===  hgtv === foodnetwork
+# ========== Smart Home  ===  until 06/19/2026, at 17:00 p.m. ET  ===  hgtv === foodnetwork
 
 def get_smart():
     return \
         [
             get_users(),
-            ("ngxFrame284943", "ngxFrame284945"),
-            ("https://www.hgtv.com/sweepstakes/hgtv-smart-home/sweepstakes?ocid=direct&xp=sistersite",
-             "https://www.foodnetwork.com/sponsored/sweepstakes/hgtv-smart-home-sweepstakes?ocid=sistersite&xp=sistersite"),
+            ("ngxFrame298070", "ngxFrame298072"),
+            ("https://www.hgtv.com/sweepstakes/hgtv-smart-home/sweepstakes",
+             "https://www.foodnetwork.com/sponsored/sweepstakes/hgtv-smart-home-sweepstakes?ocid=direct&xp=sistersite"),
             "smart",
-            "2025-05-23 17:00:00",
-            "https://www.hgtv.com/sweepstakes/hgtv-smart-home/sweepstakes?ocid=direct&xp=sistersite"
+            "2026-06-19 17:00:00",
+            "https://www.hgtv.com/sweepstakes/hgtv-smart-home/sweepstakes"
         ]
 
+# ========== Valspar Made for More  ===  until 05/28/2026, at 5:00 p.m. ET  ===  hgtv === SINGLE
 
-# ========== Sherwin-Williams Get It True  ===  until 02/13/2026, at 5:00 p.m. ET  ===  hgtv === SINGLE
-
-def get_true():
+def get_valspar():
     return \
         [
             get_users(),
-            ("ngxFrame294321", "ngxFrame294321"),
-            ("https://www.hgtv.com/sponsored/sweeps/hgtv-home-by-sherwin-williams-dream-it-true-sweepstakes",
-             "https://www.hgtv.com/sponsored/sweeps/hgtv-home-by-sherwin-williams-dream-it-true-sweepstakes"),
-            "true",
-            "2026-02-13 17:00:00",
-            "https://www.hgtv.com/sponsored/sweeps/hgtv-home-by-sherwin-williams-dream-it-true-sweepstakes"
+            ("ngxFrame297290", "ngxFrame297290"),
+            ("https://www.hgtv.com/sponsored/sweeps/valspar-made-for-more-sweepstakes",
+             "https://www.hgtv.com/sponsored/sweeps/valspar-made-for-more-sweepstakes"),
+            "valspar",
+            "2026-05-28 17:00:00",
+            "https://www.hgtv.com/sponsored/sweeps/valspar-made-for-more-sweepstakes"
         ]
 
-# ========== Wayfair Cook Up Your Dream Kitchen  ===  until 02/13/2026, at 5:00 p.m. ET  ===  foodnetwork === SINGLE
+# ========== Cartload of Cash  ===  until 05/12/2026, at 8:59 a.m. ET === foodnetwork  ===  hgtv
 
-def get_kitchen():
+def get_cartload():
     return \
         [
             get_users(),
-            ("ngxFrame294325", "ngxFrame294325"),
-            ("https://www.foodnetwork.com/sponsored/sweepstakes/wayfair-cook-up-your-dream-kitchen-sweepstakes?xp=sistersite_hgtv_sweeps_page",
-             "https://www.foodnetwork.com/sponsored/sweepstakes/wayfair-cook-up-your-dream-kitchen-sweepstakes?xp=sistersite_hgtv_sweeps_page"),
-            "kitchen",
-            "2026-02-13 17:00:00",
-            "https://www.foodnetwork.com/sponsored/sweepstakes/wayfair-cook-up-your-dream-kitchen-sweepstakes?xp=sistersite_hgtv_sweeps_page"
+            ("ngxFrame296582", "ngxFrame296580"),
+            ("https://www.foodnetwork.com/sponsored/sweepstakes/cartload-of-cash?xp=sistersite_hgtv_sweeps_page",
+             "https://www.hgtv.com/sweepstakes/cartload-of-cash?ocid=sistersite_hgtv_sweeps_page&xp=sistersite"),
+            "cartload",
+            "2026-05-12 08:59:00",
+            "https://www.foodnetwork.com/sponsored/sweepstakes/cartload-of-cash?xp=sistersite_hgtv_sweeps_page"
         ]
 
-# ========== IKEA Decades of Possibilities  ===  until 02/22/2026, at 5:00 p.m. ET  ===  hgtv === SINGLE
+# ========== Let it Grow  ===  until 06/11/2026, at 8:59 a.m. ET === tlc  ===  hgtv
 
-def get_decades():
+def get_grow():
     return \
         [
             get_users(),
-            ("ngxFrame294993", "ngxFrame294993"),
-            ("https://www.hgtv.com/sponsored/sweeps/decades-of-possibilities",
-             "https://www.hgtv.com/sponsored/sweeps/decades-of-possibilities"),
-            "decades",
-            "2026-02-22 17:00:00",
-            "https://www.hgtv.com/sponsored/sweeps/decades-of-possibilities"
+            ("ngxFrame296905", "ngxFrame296907"),
+            ("https://www.tlc.com/sweepstakes/let-it-grow?xp=sistersite_hgtv_sweeps_page",
+             "https://www.hgtv.com/sweepstakes/let-it-grow?xp=sistersite?ocid=sistersite_hgtv_sweeps_page"),
+            "grow",
+            "2026-06-11 08:59:00",
+            "https://www.tlc.com/sweepstakes/let-it-grow?xp=sistersite_hgtv_sweeps_page"
         ]
 
-# ========== New Year, New Look  ===  until 02/13/2026, at 8:59 a.m. ET  ===  hgtv === foodnetwork
+# ========== Ultimate Backyard Oasis  ===  until 06/03/2026, at 8:59 a.m. ET === hgtv  ===  foodnetwork
 
-def get_newyear():
+def get_backyard():
     return \
         [
             get_users(),
-            ("ngxFrame293641", "ngxFrame293645"),
-            ("https://www.hgtv.com/sweepstakes/new-year--new-look",
-             "https://www.foodnetwork.com/sponsored/sweepstakes/new-year--new-look?xp=sistersite?ocid=direct"),
-            "newyear",
-            "2026-02-13 08:59:00",
-            "https://www.hgtv.com/sweepstakes/new-year--new-look"
-        ]
-
-# ========== Bite Into 2026  ===  until 03/10/2026, at 8:59 a.m. ET === foodnetwork  ===  hgtv
-
-def get_bite():
-    return \
-        [
-            get_users(),
-            ("ngxFrame293637", "ngxFrame294176"),
-            ("https://www.foodnetwork.com/sponsored/sweepstakes/bite-into-2026?xp=sistersite_hgtv_sweeps_page",
-             "https://www.hgtv.com/sweepstakes/bite-into-2026?xp=sistersite?ocid=sistersite_hgtv_sweeps_page"),
-            "bite",
-            "2026-03-10 08:59:00",
-            "https://www.foodnetwork.com/sponsored/sweepstakes/bite-into-2026?xp=sistersite_hgtv_sweeps_page"
-        ]
-
-# ========== Dream Big  ===  until 03/26/2026, at 8:59 a.m. ET === tlc  ===  hgtv
-
-def get_big():
-    return \
-        [
-            get_users(),
-            ("ngxFrame294314", "ngxFrame294317"),
-            ("https://www.tlc.com/sweepstakes/dream-big?xp=sistersite_hgtv_sweeps_page",
-             "https://www.hgtv.com/sweepstakes/dream-big?ocid=sistersite_hgtv_sweeps_page&xp=sistersite"),
-            "big",
-            "2026-03-26 08:59:00",
-            "https://www.tlc.com/sweepstakes/dream-big?xp=sistersite_hgtv_sweeps_page"
+            ("ngxFrame296898", "ngxFrame296900"),
+            ("https://www.hgtv.com/sweepstakes/ultimate-backyard-oasis",
+             "https://www.foodnetwork.com/sponsored/sweepstakes/ultimate-backyard-oasis?ocid=direct&xp=sistersite"),
+            "backyard",
+            "2026-06-03 08:59:00",
+            "https://www.hgtv.com/sweepstakes/ultimate-backyard-oasis"
         ]
 
 
