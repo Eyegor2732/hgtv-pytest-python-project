@@ -14,7 +14,7 @@ def xpath_contains_text_ci(xpath_base: str, text: str) -> str:
         f"'{text.lower()}')]"
     )
 
-def random_sleep(min_s=1, max_s=5):
+def random_sleep(min_s: float=1, max_s: float=5):
     """
     to simulate human response
     :param min_s: minimum time to sleep

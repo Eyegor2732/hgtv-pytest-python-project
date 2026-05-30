@@ -12,7 +12,7 @@ def pytest_addoption(parser):
 
 @pytest.fixture(scope="class")
 def setup(request):
-    browser_name = request.config.getoption("browser_name")
+    browser_name: str = request.config.getoption("browser_name")
 
     match browser_name:
         case "chrome":
@@ -53,18 +53,19 @@ oasis = get_oasis()
 central = get_central()
 dream = get_dream()
 smart = get_smart()
-cartload = get_cartload()
+summer = get_summer()
 grow = get_grow()
 backyard = get_backyard()
 valspar = get_valspar()
 
+
 # ========== All Load fixture  ===
 
-@pytest.fixture(scope="function", params=[cartload, grow, backyard, smart])
+@pytest.fixture(scope="function", params=[summer, grow, backyard, smart])
 def data_load_double(request):
     return request.param
 
 
-@pytest.fixture(scope="function", params=[valspar])
+@pytest.fixture(scope="function", params=[])
 def data_load_single(request):
     return request.param

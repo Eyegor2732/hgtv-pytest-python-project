@@ -11,7 +11,7 @@ from utilities.SharedClass import random_sleep
 
 
 def is_sweep_small(sweep):
-    small = ["cartload", "grow", "backyard"]
+    small = ["summer", "grow", "backyard"]
     return sweep in small
 
 
@@ -21,7 +21,7 @@ def is_sweep_large(sweep):
 
 
 def is_sweep_single(sweep):
-    single = ["valspar"]
+    single = []
     return sweep in single
 
 
@@ -78,10 +78,14 @@ class HomePageActions(HomePage):
     def wait_and_send_keys(self, locator, text, timeout=10):
         WebDriverWait(self.driver, timeout).until(
             ec.element_to_be_clickable(locator)
-        ).send_keys(text)
+        ).click()
+        self.type_keys(text)
 
     def enter_email(self, email):
-        self.wait_and_send_keys(HomePage.email_entry, email)
+        WebDriverWait(self.driver, 10).until(
+            ec.element_to_be_clickable(HomePage.email_entry)
+        ).click()
+        self.type_keys(email)
 
     def begin_entry(self):
         self.wait_and_click(HomePage.begin_entry_button)
@@ -133,30 +137,35 @@ class HomePageActions(HomePage):
         except TimeoutException:
             pass  # button not present → nothing to do
 
+    def type_keys(self,text):
+        for char in text:
+            ActionChains(self.driver).send_keys(char).perform()
+            random_sleep(0.1, 0.3)  # to simulate human typing speed
+
     #   ==============================================
 
     def entry_double(self, emails, frames, sites, sweep, date_time, home, logger):
         self.driver.get(home)
 
-        date_format = '%Y-%m-%d %H:%M:%S'
-        date_obj = datetime.datetime.strptime(date_time, date_format)
+        date_format: str = "%Y-%m-%d %H:%M:%S"
+        date_obj: datetime = datetime.datetime.strptime(date_time, date_format)
         if datetime.datetime.now() <= date_obj:
-            action = ActionChains(self.driver)
-            count = 0
-            allowed_entries = len(emails) * 2
-            original_domain = tldextract.extract(self.driver.current_url).domain
+            action: ActionChains = ActionChains(self.driver)
+            count: int = 0
+            allowed_entries: int = len(emails) * 2
+            original_domain: str = tldextract.extract(self.driver.current_url).domain
 
             while count < allowed_entries:
                 self.agree()
-                domain = tldextract.extract(self.driver.current_url).domain
+                domain: str = tldextract.extract(self.driver.current_url).domain
                 if domain == original_domain:
-                    frame = frames[0]
+                    frame: str = frames[0]
                     count += 1
                 else:
-                    frame = frames[1]
+                    frame: str = frames[1]
                     count += 1
 
-                user = emails[math.floor((count - 1) / 2)]
+                user: str = emails[math.floor((count - 1) / 2)]
 
                 WebDriverWait(self.driver, 10).until(
                     ec.frame_to_be_available_and_switch_to_it(frame)
@@ -164,7 +173,7 @@ class HomePageActions(HomePage):
 
                 self.enter_email(user)
 
-                random_sleep(1, 3) # to simulate human response
+                random_sleep() # to simulate human response
 
                 self.begin_entry()
 
@@ -173,19 +182,19 @@ class HomePageActions(HomePage):
                         WebDriverWait(self.driver, 3).until(
                             ec.visibility_of_element_located(HomePage.already_entered_message_small)
                         )
-                        already_entered = self.already_entered_small()
+                        already_entered: bool = self.already_entered_small()
 
                     elif is_sweep_large(sweep):
                         WebDriverWait(self.driver, 3).until(
                             ec.visibility_of_element_located(HomePage.already_entered_message)
                         )
-                        already_entered = self.already_entered()
+                        already_entered: bool = self.already_entered()
 
                     else:
-                        already_entered = False
+                        already_entered: bool = False
 
                     if already_entered:
-                        next_site = sites[1] if domain == original_domain else sites[0]
+                        next_site: str = sites[1] if domain == original_domain else sites[0]
                         self.driver.get(next_site)
 
                         logger.info(
@@ -199,7 +208,7 @@ class HomePageActions(HomePage):
 
                 self.driver.execute_script("window.scrollBy(0,document.body.scrollHeight);")
 
-                random_sleep(1, 3) # to simulate human response
+                random_sleep() # to simulate human response
 
                 if domain == original_domain and is_sweep_small(sweep):  # and not ?
                     self.next_small()
@@ -213,13 +222,13 @@ class HomePageActions(HomePage):
 
                 logger.info(f" {sweep.upper()} - {user} - {domain} - Entry - {count} - is successful.")
 
-                random_sleep(1, 3) # to simulate human response
+                random_sleep() # to simulate human response
 
                 if count < allowed_entries:
                     if domain == "discovery" and sweep == "central":
                         action.move_to_element(self.enter_again_discovery_button_element()).perform()
                         self.enter_again_discovery()
-                    elif domain == 'food':
+                    elif domain == "food":
                         action.move_to_element(self.enter_again_food_button_element()).perform()
                         self.enter_again_food()
                     else:
@@ -236,19 +245,19 @@ class HomePageActions(HomePage):
     def entry_single(self, emails, frames, sites, sweep, date_time, home, logger):
         self.driver.get(home)
 
-        date_format = '%Y-%m-%d %H:%M:%S'
-        date_obj = datetime.datetime.strptime(date_time, date_format)
+        date_format: str = "%Y-%m-%d %H:%M:%S"
+        date_obj: datetime = datetime.datetime.strptime(date_time, date_format)
 
         if datetime.datetime.now() <= date_obj:
-            count = 0
-            allowed_entries = len(emails)
+            count: int = 0
+            allowed_entries: int = len(emails)
 
             while count < allowed_entries:
                 self.agree()
-                domain = tldextract.extract(self.driver.current_url).domain
+                domain: str = tldextract.extract(self.driver.current_url).domain
                 count += 1
-                frame = frames[0]
-                user = emails[count - 1]
+                frame: str = frames[0]
+                user: str = emails[count - 1]
 
                 WebDriverWait(self.driver, 10).until(
                     ec.frame_to_be_available_and_switch_to_it(frame)
@@ -256,7 +265,7 @@ class HomePageActions(HomePage):
 
                 self.enter_email(user)
 
-                random_sleep(1, 3)  # to simulate human response
+                random_sleep()  # to simulate human response
 
                 self.begin_entry()
 
@@ -271,7 +280,7 @@ class HomePageActions(HomePage):
 
                 self.driver.execute_script("window.scrollBy(0,document.body.scrollHeight);")
 
-                random_sleep(1, 3)  # to simulate human response
+                random_sleep()  # to simulate human response
 
                 self.enter()
 

@@ -82,18 +82,18 @@ def get_valspar():
             "https://www.hgtv.com/sponsored/sweeps/valspar-made-for-more-sweepstakes"
         ]
 
-# ========== Cartload of Cash  ===  until 05/12/2026, at 8:59 a.m. ET === foodnetwork  ===  hgtv
+# ========== Summer Flavors  ===  until 07/14/2026, at 8:59 a.m. ET === foodnetwork  ===  hgtv
 
-def get_cartload():
+def get_summer():
     return \
         [
             get_users(),
-            ("ngxFrame296582", "ngxFrame296580"),
-            ("https://www.foodnetwork.com/sponsored/sweepstakes/cartload-of-cash?xp=sistersite_hgtv_sweeps_page",
-             "https://www.hgtv.com/sweepstakes/cartload-of-cash?ocid=sistersite_hgtv_sweeps_page&xp=sistersite"),
-            "cartload",
-            "2026-05-12 08:59:00",
-            "https://www.foodnetwork.com/sponsored/sweepstakes/cartload-of-cash?xp=sistersite_hgtv_sweeps_page"
+            ("ngxFrame298052", "ngxFrame298054"),
+            ("https://www.foodnetwork.com/sponsored/sweepstakes/summer-flavors?xp=sistersite_hgtv_sweeps_page",
+             "https://www.tlc.com/sweepstakes/summer-flavors"),
+            "summer",
+            "2026-07-14 08:59:00",
+            "https://www.foodnetwork.com/sponsored/sweepstakes/summer-flavors?xp=sistersite_hgtv_sweeps_page"
         ]
 
 # ========== Let it Grow  ===  until 06/11/2026, at 8:59 a.m. ET === tlc  ===  hgtv
