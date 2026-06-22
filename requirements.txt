@@ -1,0 +1,11 @@
+selenium>=4.25.0
+undetected-chromedriver>=3.5.0
+selenium-stealth>=1.0.6
+pytest>=8.3.0
+allure-pytest>=2.13.0
+python-dotenv>=1.0.0
+pytest-dotenv>=0.5.2
+tldextract>=5.1.0
+pytest-html>=4.1.0
+pytest-xdist>=3.6.0
+pytest-retry>=1.6.0
