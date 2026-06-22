@@ -16,9 +16,9 @@ def setup(request):
     browser_name: str = request.config.getoption("browser_name")
 
     match browser_name:
-        case "chrome":
-        case "chrome_headless":
+        case "chrome" | "chrome_headless":
             ops = webdriver.ChromeOptions()
+
             ops.add_argument("--no-sandbox")
             ops.add_argument("--disable-dev-shm-usage")
             ops.add_argument("--window-size=1920,1080")
@@ -46,7 +46,7 @@ def setup(request):
         case _:
             raise ValueError(f"Unsupported browser: {browser_name}")
 
-    driver.set_window_size(1700, 1200)
+    # driver.set_window_size(1700, 1200)
     request.cls.driver = driver
     request.cls.wait = WebDriverWait(driver, 10)
     yield
