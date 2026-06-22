@@ -8,6 +8,11 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:
+      email1: ${{ secrets.EMAIL1 }}
+      email2: ${{ secrets.EMAIL2 }}
+      email3: ${{ secrets.EMAIL3 }}
+      email4: ${{ secrets.EMAIL4 }}
     steps:
     - uses: actions/checkout@v5
     - name: Set up Python
