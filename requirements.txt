@@ -1,5 +1,4 @@
 selenium>=4.25.0
-undetected-chromedriver>=3.5.0
 selenium-stealth>=1.0.6
 pytest>=8.3.0
 allure-pytest>=2.13.0

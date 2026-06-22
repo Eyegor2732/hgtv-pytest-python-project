@@ -20,7 +20,9 @@ def setup(request):
             driver = webdriver.Chrome()
         case "chrome_headless":
             ops = webdriver.ChromeOptions()
-            ops.add_argument('--headless=new')
+            ops.add_argument("--headless=new")
+            ops.add_argument("--no-sandbox")
+            ops.add_argument("--disable-dev-shm-usage")
             driver = webdriver.Chrome(options=ops)
         case "safari":
             if platform.system() != "Darwin":
