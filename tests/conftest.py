@@ -17,12 +17,15 @@ def setup(request):
 
     match browser_name:
         case "chrome":
-            driver = webdriver.Chrome()
         case "chrome_headless":
             ops = webdriver.ChromeOptions()
-            ops.add_argument("--headless=new")
             ops.add_argument("--no-sandbox")
             ops.add_argument("--disable-dev-shm-usage")
+            ops.add_argument("--window-size=1920,1080")
+
+            if browser_name == "chrome_headless":
+                ops.add_argument("--headless=new")
+
             driver = webdriver.Chrome(options=ops)
         case "safari":
             if platform.system() != "Darwin":
