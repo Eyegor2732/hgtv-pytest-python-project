@@ -23,18 +23,18 @@ class TestEntry(BaseClass):
 
         self.logger.info(f" Test {sweep.upper()} Ended")
 
-    @pytest.mark.usefixtures("data_load_single")
-    def test_entry_single(self, data_load_single):
-        users: tuple[str, ...] = data_load_single[0]
-        iframes: tuple[str, ...] = data_load_single[1]
-        urls: tuple[str, ...] = data_load_single[2]
-        sweep: str = data_load_single[3]
-        end_date: str = data_load_single[4]
-        home: str = data_load_single[5]
-
-        self.logger.info(f" Test {sweep.upper()} Started. Must be before {end_date}")
-
-        home_page_actions = HomePageActions(self.driver)
-        home_page_actions.entry_single(users, iframes, urls, sweep, end_date, home, self.logger)
-
-        self.logger.info(f" Test {sweep.upper()} Ended")
+    # @pytest.mark.usefixtures("data_load_single")
+    # def test_entry_single(self, data_load_single):
+    #     users: tuple[str, ...] = data_load_single[0]
+    #     iframes: tuple[str, ...] = data_load_single[1]
+    #     urls: tuple[str, ...] = data_load_single[2]
+    #     sweep: str = data_load_single[3]
+    #     end_date: str = data_load_single[4]
+    #     home: str = data_load_single[5]
+    #
+    #     self.logger.info(f" Test {sweep.upper()} Started. Must be before {end_date}")
+    #
+    #     home_page_actions: HomePageActions = HomePageActions(self.driver)
+    #     home_page_actions.entry_single(users, iframes, urls, sweep, end_date, home, self.logger)
+    #
+    #     self.logger.info(f" Test {sweep.upper()} Ended")

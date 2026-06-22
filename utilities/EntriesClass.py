@@ -96,32 +96,32 @@ def get_summer():
             "https://www.foodnetwork.com/sponsored/sweepstakes/summer-flavors?xp=sistersite_hgtv_sweeps_page"
         ]
 
-# ========== Let it Grow  ===  until 06/11/2026, at 8:59 a.m. ET === tlc  ===  hgtv
+# ========== Summer Cash  ===  until 08/20/2026, at 8:59 a.m. ET === tlc  ===  foodnetwork
 
-def get_grow():
+def get_cash():
     return \
         [
             get_users(),
-            ("ngxFrame296905", "ngxFrame296907"),
-            ("https://www.tlc.com/sweepstakes/let-it-grow?xp=sistersite_hgtv_sweeps_page",
-             "https://www.hgtv.com/sweepstakes/let-it-grow?xp=sistersite?ocid=sistersite_hgtv_sweeps_page"),
-            "grow",
-            "2026-06-11 08:59:00",
-            "https://www.tlc.com/sweepstakes/let-it-grow?xp=sistersite_hgtv_sweeps_page"
+            ("ngxFrame299131", "ngxFrame299133"),
+            ("https://www.tlc.com/sweepstakes/summer-cash?xp=sistersite_hgtv_sweeps_page",
+             "https://www.foodnetwork.com/sponsored/sweepstakes/summer-cash?ocid=sistersite_hgtv_sweeps_page&xp=sistersite"),
+            "cash",
+            "2026-08-20 08:59:00",
+            "https://www.tlc.com/sweepstakes/summer-cash?xp=sistersite_hgtv_sweeps_page"
         ]
 
-# ========== Ultimate Backyard Oasis  ===  until 06/03/2026, at 8:59 a.m. ET === hgtv  ===  foodnetwork
+# ========== Home Sweet Home  ===  until 08/12/2026, at 8:59 a.m. ET === hgtv  ===  tlc
 
-def get_backyard():
+def get_sweet():
     return \
         [
             get_users(),
-            ("ngxFrame296898", "ngxFrame296900"),
-            ("https://www.hgtv.com/sweepstakes/ultimate-backyard-oasis",
-             "https://www.foodnetwork.com/sponsored/sweepstakes/ultimate-backyard-oasis?ocid=direct&xp=sistersite"),
-            "backyard",
-            "2026-06-03 08:59:00",
-            "https://www.hgtv.com/sweepstakes/ultimate-backyard-oasis"
+            ("ngxFrame299125", "ngxFrame299128"),
+            ("https://www.hgtv.com/sweepstakes/home-sweet-home",
+             "https://www.tlc.com/sweepstakes/home-sweet-home?xp=sistersite?ocid=direct"),
+            "sweet",
+            "2026-08-12 08:59:00",
+            "https://www.hgtv.com/sweepstakes/home-sweet-home"
         ]
 
 

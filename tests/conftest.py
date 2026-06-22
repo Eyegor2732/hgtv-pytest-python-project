@@ -1,11 +1,12 @@
 import platform
 import pytest
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
 from utilities.EntriesClass import *
 
 
 def pytest_addoption(parser):
-    parser.addoption("--browser_name", action="store", default="firefox")
+    parser.addoption("--browser_name", action="store", default="chrome_headless")
 
 
 #  ========== Class Setup / Teardown fixture  ===
@@ -41,8 +42,8 @@ def setup(request):
             raise ValueError(f"Unsupported browser: {browser_name}")
 
     driver.set_window_size(1700, 1200)
-    driver.implicitly_wait(10)
     request.cls.driver = driver
+    request.cls.wait = WebDriverWait(driver, 10)
     yield
     driver.quit()
 
@@ -54,14 +55,13 @@ central = get_central()
 dream = get_dream()
 smart = get_smart()
 summer = get_summer()
-grow = get_grow()
-backyard = get_backyard()
-valspar = get_valspar()
+cash = get_cash()
+sweet = get_sweet()
 
 
 # ========== All Load fixture  ===
 
-@pytest.fixture(scope="function", params=[summer, grow, backyard, smart])
+@pytest.fixture(scope="function", params=[summer, cash, sweet])
 def data_load_double(request):
     return request.param
 
