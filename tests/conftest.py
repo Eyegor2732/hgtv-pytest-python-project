@@ -31,17 +31,19 @@ def setup(request):
             if platform.system() != "Darwin":
                 raise RuntimeError("Safari is only supported on macOS")
             driver = webdriver.Safari()
-        case "firefox":
-            driver = webdriver.Firefox()
-        case "firefox_headless":
+        case "firefox" | "firefox_headless":
             ops = webdriver.FirefoxOptions()
-            ops.add_argument('--headless')
+
+            if browser_name == "firefox_headless":
+                ops.add_argument("--headless")
+
             driver = webdriver.Firefox(options=ops)
-        case "edge":
-            driver = webdriver.Edge()
-        case "edge_headless":
+        case "edge" | "edge_headless":
             ops = webdriver.EdgeOptions()
-            ops.add_argument('headless=new')
+
+            if browser_name == "edge_headless":
+                ops.add_argument("headless=new")
+
             driver = webdriver.Edge(options=ops)
         case _:
             raise ValueError(f"Unsupported browser: {browser_name}")
