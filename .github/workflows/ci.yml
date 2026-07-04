@@ -30,6 +30,8 @@ jobs:
         pip install -r requirements.txt
     - name: Setup Chrome
       uses: browser-actions/setup-chrome@v1
+    - name: Create report directory
+      run: mkdir -p html-results
     - name: Run your tests
       run: pytest --browser_name=chrome_headless --retries 5 --retry-delay 5 --html=html-results/pytest_report.html
     - uses: actions/upload-artifact@v4
