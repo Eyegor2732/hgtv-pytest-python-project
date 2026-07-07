@@ -1,4 +1,3 @@
-import pytest
 from page_actions.HomePageActions import HomePageActions
 from utilities.BaseClass import BaseClass, get_logger
 
@@ -7,7 +6,6 @@ class TestEntry(BaseClass):
 
     logger = get_logger()
 
-    @pytest.mark.usefixtures("data_load_double")
     def test_entry_double(self, data_load_double):
         users: tuple[str, ...] = data_load_double[0]
         iframes: tuple[str, ...] = data_load_double[1]
@@ -23,7 +21,6 @@ class TestEntry(BaseClass):
 
         self.logger.info(f" Test {sweep.upper()} Ended")
 
-    # @pytest.mark.usefixtures("data_load_single")
     # def test_entry_single(self, data_load_single):
     #     users: tuple[str, ...] = data_load_single[0]
     #     iframes: tuple[str, ...] = data_load_single[1]
