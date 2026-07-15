@@ -82,18 +82,18 @@ def get_valspar():
             "https://www.hgtv.com/sponsored/sweeps/valspar-made-for-more-sweepstakes"
         ]
 
-# ========== Summer Flavors  ===  until 07/14/2026, at 8:59 a.m. ET === foodnetwork  ===  hgtv
+# ========== Summer Flavors  ===  until 09/08/2026, at 8:59 a.m. ET === foodnetwork  ===  food
 
-def get_summer():
+def get_grill():
     return \
         [
             get_users(),
-            ("ngxFrame298052", "ngxFrame298054"),
-            ("https://www.foodnetwork.com/sponsored/sweepstakes/summer-flavors?xp=sistersite_hgtv_sweeps_page",
-             "https://www.tlc.com/sweepstakes/summer-flavors"),
-            "summer",
-            "2026-07-14 08:59:00",
-            "https://www.foodnetwork.com/sponsored/sweepstakes/summer-flavors?xp=sistersite_hgtv_sweeps_page"
+            ("ngxFrame299802", "ngxFrame299138"),
+            ("https://www.foodnetwork.com/sponsored/sweepstakes/grill-master?xp=sistersite_hgtv_sweeps_page",
+             "https://www.food.com/sweepstakes/grill-master-5k?xp=sistersite?ocid=sistersite_hgtv_sweeps_page"),
+            "grill",
+            "2026-09-08 08:59:00",
+            "https://www.foodnetwork.com/sponsored/sweepstakes/grill-master?xp=sistersite_hgtv_sweeps_page"
         ]
 
 # ========== Summer Cash  ===  until 08/20/2026, at 8:59 a.m. ET === tlc  ===  foodnetwork
