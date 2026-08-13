@@ -110,18 +110,18 @@ def get_cash():
             "https://www.tlc.com/sweepstakes/summer-cash?xp=sistersite_hgtv_sweeps_page"
         ]
 
-# ========== Home Sweet Home  ===  until 08/12/2026, at 8:59 a.m. ET === hgtv  ===  tlc
+# ========== Trick or Treat  ===  until 10/28/2026, at 8:59 a.m. ET === hgtv  ===  food
 
-def get_sweet():
+def get_trick():
     return \
         [
             get_users(),
-            ("ngxFrame299125", "ngxFrame299128"),
-            ("https://www.hgtv.com/sweepstakes/home-sweet-home",
-             "https://www.tlc.com/sweepstakes/home-sweet-home?xp=sistersite?ocid=direct"),
-            "sweet",
-            "2026-08-12 08:59:00",
-            "https://www.hgtv.com/sweepstakes/home-sweet-home"
+            ("ngxFrame300024", "ngxFrame300021"),
+            ("https://www.hgtv.com/sweepstakes/trick-or-treat-yourself",
+             "https://www.food.com/sweepstakes/trick-or-treat-yourself?ocid=direct&xp=sistersite"),
+            "trick",
+            "2026-10-28 08:59:00",
+            "https://www.hgtv.com/sweepstakes/trick-or-treat-yourself"
         ]
 
 

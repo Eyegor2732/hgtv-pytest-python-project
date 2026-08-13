@@ -11,7 +11,7 @@ from utilities.SharedClass import random_sleep
 
 
 def is_sweep_small(sweep):
-    small = ["grill", "cash", "sweet"]
+    small = ["grill", "cash", "trick"]
     return sweep in small
 
 
