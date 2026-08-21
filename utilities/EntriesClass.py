@@ -96,18 +96,18 @@ def get_grill():
             "https://www.foodnetwork.com/sponsored/sweepstakes/grill-master?xp=sistersite_hgtv_sweeps_page"
         ]
 
-# ========== Summer Cash  ===  until 08/20/2026, at 8:59 a.m. ET === tlc  ===  foodnetwork
+# ========== Dream it, Win it  ===  until 10/29/2026, at 8:59 a.m. ET === tlc  ===  food
 
-def get_cash():
+def get_win():
     return \
         [
             get_users(),
-            ("ngxFrame299131", "ngxFrame299133"),
-            ("https://www.tlc.com/sweepstakes/summer-cash?xp=sistersite_hgtv_sweeps_page",
-             "https://www.foodnetwork.com/sponsored/sweepstakes/summer-cash?ocid=sistersite_hgtv_sweeps_page&xp=sistersite"),
-            "cash",
-            "2026-08-20 08:59:00",
-            "https://www.tlc.com/sweepstakes/summer-cash?xp=sistersite_hgtv_sweeps_page"
+            ("ngxFrame300752", "ngxFrame300748"),
+            ("https://www.tlc.com/sweepstakes/dream-it--win-it?xp=sistersite_hgtv_sweeps_page",
+             "https://www.food.com/sweepstakes/dream-it-win-it?ocid=sistersite_hgtv_sweeps_page&xp=sistersite"),
+            "win",
+            "2026-10-29 08:59:00",
+            "https://www.tlc.com/sweepstakes/dream-it--win-it?xp=sistersite_hgtv_sweeps_page"
         ]
 
 # ========== Trick or Treat  ===  until 10/28/2026, at 8:59 a.m. ET === hgtv  ===  food

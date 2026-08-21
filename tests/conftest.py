@@ -62,13 +62,13 @@ central = get_central()
 dream = get_dream()
 smart = get_smart()
 grill = get_grill()
-cash = get_cash()
+win = get_win()
 trick = get_trick()
 
 
 # ========== All Load fixture  ===
 
-@pytest.fixture(scope="function", params=[grill, cash, trick])
+@pytest.fixture(scope="function", params=[grill, win, trick])
 def data_load_double(request):
     return request.param
 
