@@ -170,8 +170,13 @@ class HomePageActions(HomePage):
                 log_user = user
 
                 if os.getenv("CI"):
-                    email_username, email_domain = user.split("@")
-                    log_user = f"{email_username[0]}@{email_domain[0]}"
+                    email_users = {
+                        value: name
+                        for name, value in os.environ.items()
+                        if name.startswith("email") and value
+                    }
+
+                    log_user = email_users.get(user, "unknown")
 
                 WebDriverWait(self.driver, 10).until(
                     ec.frame_to_be_available_and_switch_to_it(frame)
@@ -267,8 +272,13 @@ class HomePageActions(HomePage):
                 log_user = user
 
                 if os.getenv("CI"):
-                    email_username, email_domain = user.split("@")
-                    log_user = f"{email_username[0]}@{email_domain[0]}"
+                    email_users = {
+                        value: name
+                        for name, value in os.environ.items()
+                        if name.startswith("email") and value
+                    }
+
+                    log_user = email_users.get(user, "unknown")
 
                 WebDriverWait(self.driver, 10).until(
                     ec.frame_to_be_available_and_switch_to_it(frame)
