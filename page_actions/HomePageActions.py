@@ -167,9 +167,11 @@ class HomePageActions(HomePage):
                     count += 1
 
                 user: str = emails[math.floor((count - 1) / 2)]
+                log_user = user
 
                 if os.getenv("CI"):
-                    user = f"{user[0]}@{domain[0]}"
+                    email_username, email_domain = user.split("@")
+                    log_user = f"{email_username[0]}@{email_domain[0]}"
 
                 WebDriverWait(self.driver, 10).until(
                     ec.frame_to_be_available_and_switch_to_it(frame)
@@ -202,7 +204,7 @@ class HomePageActions(HomePage):
                         self.driver.get(next_site)
 
                         logger.info(
-                            f" {sweep.upper()} - {user} - You already entered for {domain} sweepstake today."
+                            f" {sweep.upper()} - {log_user} - You already entered for {domain} sweepstake today."
                         )
                         continue
 
@@ -224,7 +226,7 @@ class HomePageActions(HomePage):
 
                 self.driver.switch_to.default_content()
 
-                logger.info(f" {sweep.upper()} - {user} - {domain} - Entry - {count} - is successful.")
+                logger.info(f" {sweep.upper()} - {log_user} - {domain} - Entry - {count} - is successful.")
 
                 random_sleep() # to simulate human response
 
@@ -276,7 +278,7 @@ class HomePageActions(HomePage):
                 try:
                     if is_sweep_single(sweep) and self.already_entered_small_element().is_displayed() and self.already_entered_small():
                         self.driver.get(sites[0])
-                        logger.info(f" {sweep.upper()} - {user} - You already entered for {domain} sweepstake today.")
+                        logger.info(f" {sweep.upper()} - {log_user} - You already entered for {domain} sweepstake today.")
                         continue
                 except NoSuchElementException:
                     # "already entered" message did not appear → proceed normally
@@ -288,7 +290,7 @@ class HomePageActions(HomePage):
 
                 self.enter()
 
-                logger.info(f" {sweep.upper()} - {user} - {domain} - Entry - {count} - is successful.")
+                logger.info(f" {sweep.upper()} - {log_user} - {domain} - Entry - {count} - is successful.")
 
                 if count < allowed_entries:
                     self.driver.get(home)
