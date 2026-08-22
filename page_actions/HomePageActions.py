@@ -1,3 +1,4 @@
+import os
 import math
 import datetime
 import tldextract
@@ -166,6 +167,9 @@ class HomePageActions(HomePage):
                     count += 1
 
                 user: str = emails[math.floor((count - 1) / 2)]
+
+                if os.getenv("CI"):
+                    user = f"{user[0]}@{domain[0]}"
 
                 WebDriverWait(self.driver, 10).until(
                     ec.frame_to_be_available_and_switch_to_it(frame)
