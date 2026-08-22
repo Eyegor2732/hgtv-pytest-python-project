@@ -264,6 +264,11 @@ class HomePageActions(HomePage):
                 count += 1
                 frame: str = frames[0]
                 user: str = emails[count - 1]
+                log_user = user
+
+                if os.getenv("CI"):
+                    email_username, email_domain = user.split("@")
+                    log_user = f"{email_username[0]}@{email_domain[0]}"
 
                 WebDriverWait(self.driver, 10).until(
                     ec.frame_to_be_available_and_switch_to_it(frame)
