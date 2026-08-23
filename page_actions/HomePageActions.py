@@ -11,19 +11,34 @@ from selenium.common import NoSuchElementException
 from utilities.SharedClass import random_sleep
 
 
-def is_sweep_small(sweep):
-    small = ["grill", "win", "trick"]
+def is_sweep_small(sweep: str):
+    small: list[str] = ["grill", "win", "trick"]
     return sweep in small
 
 
-def is_sweep_large(sweep):
-    large = ["oasis", "dream", "smart"]
+def is_sweep_large(sweep: str):
+    large: list[str] = ["oasis", "dream", "smart"]
     return sweep in large
 
 
-def is_sweep_single(sweep):
-    single = []
+def is_sweep_single(sweep: str):
+    single: list[str] = []
     return sweep in single
+
+
+def get_log_user(user: str):
+    if os.getenv("CI"):
+        email_users = {
+            value: name
+            for name, value in os.environ.items()
+            if name.startswith("email") and value
+        }
+
+        log_user: str = email_users.get(user, "unknown")
+    else:
+        log_user: str = user
+
+    return log_user
 
 
 class HomePageActions(HomePage):
@@ -145,7 +160,7 @@ class HomePageActions(HomePage):
 
     #   ==============================================
 
-    def entry_double(self, emails, frames, sites, sweep, date_time, home, logger):
+    def entry_double(self, emails: tuple[str, ...], frames: tuple[str, ...], sites: tuple[str, ...], sweep: str, date_time: str, home: str, logger):
         self.driver.get(home)
 
         date_format: str = "%Y-%m-%d %H:%M:%S"
@@ -167,16 +182,7 @@ class HomePageActions(HomePage):
                     count += 1
 
                 user: str = emails[math.floor((count - 1) / 2)]
-                log_user = user
-
-                if os.getenv("CI"):
-                    email_users = {
-                        value: name
-                        for name, value in os.environ.items()
-                        if name.startswith("email") and value
-                    }
-
-                    log_user = email_users.get(user, "unknown")
+                log_user = get_log_user(user)
 
                 WebDriverWait(self.driver, 10).until(
                     ec.frame_to_be_available_and_switch_to_it(frame)
@@ -253,7 +259,7 @@ class HomePageActions(HomePage):
         else:
             logger.info(f" Sweepstake {sweep.upper()} is expired on {date_time}")
 
-    def entry_single(self, emails, frames, sites, sweep, date_time, home, logger):
+    def entry_single(self, emails: tuple[str, ...], frames: tuple[str, ...], sites: tuple[str, ...], sweep: str, date_time: str, home: str, logger):
         self.driver.get(home)
 
         date_format: str = "%Y-%m-%d %H:%M:%S"
@@ -269,16 +275,7 @@ class HomePageActions(HomePage):
                 count += 1
                 frame: str = frames[0]
                 user: str = emails[count - 1]
-                log_user = user
-
-                if os.getenv("CI"):
-                    email_users = {
-                        value: name
-                        for name, value in os.environ.items()
-                        if name.startswith("email") and value
-                    }
-
-                    log_user = email_users.get(user, "unknown")
+                log_user = get_log_user(user)
 
                 WebDriverWait(self.driver, 10).until(
                     ec.frame_to_be_available_and_switch_to_it(frame)
