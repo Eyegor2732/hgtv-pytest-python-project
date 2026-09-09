@@ -12,7 +12,7 @@ from utilities.SharedClass import random_sleep
 
 
 def is_sweep_small(sweep: str):
-    small: list[str] = ["grill", "win", "trick"]
+    small: list[str] = ["taste", "win", "trick"]
     return sweep in small
 
 

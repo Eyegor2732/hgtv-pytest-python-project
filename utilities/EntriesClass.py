@@ -82,18 +82,18 @@ def get_valspar():
             "https://www.hgtv.com/sponsored/sweeps/valspar-made-for-more-sweepstakes"
         ]
 
-# ========== Summer Flavors  ===  until 09/08/2026, at 8:59 a.m. ET === foodnetwork  ===  food
+# ========== Summer Flavors  ===  until 11/10/2026, at 8:59 a.m. ET === foodnetwork  ===  food
 
-def get_grill():
+def get_taste():
     return \
         [
             get_users(),
-            ("ngxFrame299802", "ngxFrame299138"),
-            ("https://www.foodnetwork.com/sponsored/sweepstakes/grill-master?xp=sistersite_hgtv_sweeps_page",
-             "https://www.food.com/sweepstakes/grill-master-5k?xp=sistersite?ocid=sistersite_hgtv_sweeps_page"),
-            "grill",
-            "2026-09-08 08:59:00",
-            "https://www.foodnetwork.com/sponsored/sweepstakes/grill-master?xp=sistersite_hgtv_sweeps_page"
+            ("ngxFrame301167", "ngxFrame301169"),
+            ("https://www.foodnetwork.com/sponsored/sweepstakes/taste-of-fall",
+             "https://www.food.com/sweepstakes/taste-of-fall"),
+            "taste",
+            "2026-11-10 08:59:00",
+            "https://www.foodnetwork.com/sponsored/sweepstakes/taste-of-fall"
         ]
 
 # ========== Dream it, Win it  ===  until 10/29/2026, at 8:59 a.m. ET === tlc  ===  food
@@ -103,11 +103,11 @@ def get_win():
         [
             get_users(),
             ("ngxFrame300752", "ngxFrame300748"),
-            ("https://www.tlc.com/sweepstakes/dream-it--win-it?xp=sistersite_hgtv_sweeps_page",
-             "https://www.food.com/sweepstakes/dream-it-win-it?ocid=sistersite_hgtv_sweeps_page&xp=sistersite"),
+            ("https://www.tlc.com/sweepstakes/dream-it--win-it",
+             "https://www.food.com/sweepstakes/dream-it-win-it"),
             "win",
             "2026-10-29 08:59:00",
-            "https://www.tlc.com/sweepstakes/dream-it--win-it?xp=sistersite_hgtv_sweeps_page"
+            "https://www.tlc.com/sweepstakes/dream-it--win-it"
         ]
 
 # ========== Trick or Treat  ===  until 10/28/2026, at 8:59 a.m. ET === hgtv  ===  food
@@ -118,7 +118,7 @@ def get_trick():
             get_users(),
             ("ngxFrame300024", "ngxFrame300021"),
             ("https://www.hgtv.com/sweepstakes/trick-or-treat-yourself",
-             "https://www.food.com/sweepstakes/trick-or-treat-yourself?ocid=direct&xp=sistersite"),
+             "https://www.food.com/sweepstakes/trick-or-treat-yourself"),
             "trick",
             "2026-10-28 08:59:00",
             "https://www.hgtv.com/sweepstakes/trick-or-treat-yourself"
